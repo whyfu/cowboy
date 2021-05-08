@@ -9,10 +9,12 @@ states_response = requests.get('https://cdn-api.co-vin.in/api/v2/admin/location/
 states = states_response.json()
 
 sta_dump.write(str(states))
+sta_dump.close()
 
 for sta in states['states']:
 	dis_response = requests.get('https://cdn-api.co-vin.in/api/v2/admin/location/districts/{0}'.format(sta['state_id']), headers=header)
 	districts = dis_response.json()
 	dis_dump.write(str(districts))
+dis_dump.close()
 
 print("done.")
