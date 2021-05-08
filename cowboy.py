@@ -94,7 +94,7 @@ for k in range(0, loops):
 			else: centre_list.append(center['name'])
 
 	av_total = av_boomer + av_zoomer
-	print("Start Date: {0}".format(date))
+	print("\nFor 7 days from {0}".format(date))
 	if (av_total == 0):
 		print("\nEh, no slots available. Check back soon!\n")
 	else:
