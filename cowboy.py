@@ -18,7 +18,6 @@ loops = 1
 do_loop = False
 stime = 10
 i = 3
-iteration = 0
 
 for passed_args in sys.argv[3:]:
 	if (passed_args[0] == '-'):
