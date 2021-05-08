@@ -1,6 +1,13 @@
 import sys
 import requests
 
+def showHelp():
+	print("cowboy yeehaw\n")
+	print("Usage:\n\tpython cowboy.py %district_id% %start_date% [-o/a]")
+	print("\nFlags:\n\t-o: show only available slots\n\t-a: show only 18+ slots")
+	input()
+	quit()
+
 av_only = False
 zoomer_only = False
 
@@ -9,10 +16,19 @@ date = str(sys.argv[2])
 heamders = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36 Edg/90.0.818.51'}
 pog = requests.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id={0}&date={1}'.format(district_id, date), headers=heamders)
 
-if ('o' in sys.argv[3:]):
-	av_only = True
-if ('a' in sys.argv[3:]):
-	zoomer_only = True
+for passed_args in sys.argv[3:]:
+	if (passed_args[0] == '-'):
+		for arg in passed_args[1:]:
+			if (arg == 'a'): 
+				zoomer_only = True
+			elif (arg == 'o'):
+				av_only = True
+			else: 
+				print("\nUnknown argument: '{0}'\n".format(arg))
+				showHelp()
+	else:
+		print("\nInvalid usage.\n")
+		showHelp()
 
 centre_list = []
 response_dict = pog.json()
