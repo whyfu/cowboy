@@ -1,4 +1,4 @@
-# dump state/district metadate from cowin server lol
+# dump state/district metadata from cowin server lol
 import requests
 
 print("dumping...")
