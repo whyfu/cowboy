@@ -94,6 +94,8 @@ for k in range(0, loops):
 			else: centre_list.append(center['name'])
 
 	av_total = av_boomer + av_zoomer
+	if (do_loop):
+		print("\n[Iteration {0} of {1}]".format(k+1, loops))
 	print("\nFor 7 days from {0}".format(date))
 	if (av_total == 0):
 		print("\nEh, no slots available. Check back soon!\n")
@@ -104,8 +106,6 @@ for k in range(0, loops):
 		if(beep):
 			print("Playing notification sound...") 
 			winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
-	if(do_loop):
-		print("\nIteration {0} of {1}".format(k+1, loops))
-		if (k+1 != loops):
-			print("Sleeping for {0} seconds...\nPress ctrl+c to terminate".format(stime))
-			time.sleep(stime)
+	if(do_loop and (k+1 != loops)):
+		print("Sleeping for {0} seconds...\nPress ctrl+c to terminate".format(stime))
+		time.sleep(stime)
