@@ -1,6 +1,6 @@
 # cowboy
 dumb code pls get me a vaccine slot
-
-Usage:
-
-  python cowboy.py %district_id% %startdate% (optional flags: o: show only available slots, a: show only 18+ slots) 
+# Prerequisites:
+requests: python pip -m install requests
+# Usage:
+python cowboy.py %district_id% %startdate% [-o/a/l loops/t sleep_time/b/v]
