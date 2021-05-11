@@ -17,6 +17,7 @@ loops = 1
 do_loop = False
 stime = 10
 i = 3
+beepfor = 'n'
 
 for passed_args in sys.argv[3:]:
 	if (passed_args[0] == '-'):
@@ -27,6 +28,7 @@ for passed_args in sys.argv[3:]:
 				extrovert = True
 			elif (arg == 'b'):
 				beep = True
+				beepfor = sys.argv[i+1]
 			elif (arg == 'l'):
 				do_loop = True
 				loops = int(sys.argv[i+1])
@@ -81,7 +83,7 @@ for k in range(0, loops):
 		if(zsus_list):
 			zoomer_list.append((center['name'], zsus_list))
 			av_sus = av_sus + len(zsus_list)
-		if (not bsus_list and not zsus_list and extrovert): print("[No sessions available] (check your filters)\n")
+		if (not bsus_list and not zsus_list and extrovert): print("[No slots available]\n")
 
 	av_total = av_boomer + av_zoomer
 	av_centers = len(boomer_list) + len(zoomer_list)
@@ -93,11 +95,16 @@ for k in range(0, loops):
 	else:
 		print("\n{0} slot(s) available, in {1} unique session(s) across {2} center(s).".format(av_total, av_sus, av_centers))
 		print("{0} slot(s) for 18+ year olds, {1} slot(s) for 45+ year olds.".format(av_zoomer, av_boomer))
-		if (boomer_list): print("\nCheck these centers for 45+:", boomer_list)
-		if (zoomer_list): print("\nCheck these centers for 18+:", zoomer_list)
-		if(beep):
-			print("Playing notification sound...") 
-			winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
+		if (boomer_list): 
+			print("\nCheck these centers for 45+:", boomer_list)
+			if (beepfor == 'b'): 
+				print("Playing notification sound...") 
+				winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
+		if (zoomer_list): 
+			print("\nCheck these centers for 18+:", zoomer_list)
+			if (beepfor == 'z'):
+				print("Playing notification sound...") 
+				winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
 	if(do_loop and (k+1 != loops)):
 		print("Sleeping for {0} seconds...\nPress Ctrl+C to terminate".format(stime))
 		time.sleep(stime)
